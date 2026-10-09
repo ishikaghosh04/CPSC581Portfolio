@@ -9,8 +9,16 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Strawberry matcha scroll indicator -->
+<div class="matcha-scroll" aria-hidden="true">
+  <div class="matcha-straw"></div>
+  <div class="matcha-glass">
+    <div class="matcha-liquid" id="matcha-liquid"></div>
+    <div class="matcha-shine"></div>
+  </div>
+</div>
   <header class="site-header">
-    <a class="wordmark" href="#home" aria-label="Portfolio home">581<span>.</span></a>
+    <a class="wordmark" href="#home" aria-label="Portfolio home"></a>
     <nav class="site-nav" aria-label="Main navigation">
       <a href="#home">Home</a>
       <a href="#philosophy">Design philosophy</a>
@@ -153,5 +161,38 @@
     <p>CPSC 581 · Design portfolio</p>
     <a href="#home">Back to top ↑</a>
   </footer>
+  <script>
+  (() => {
+    const liquid = document.getElementById("matcha-liquid");
+    let updatePending = false;
+
+    function updateDrink() {
+      const page = document.scrollingElement || document.documentElement;
+      const scrollableHeight = page.scrollHeight - page.clientHeight;
+
+      const progress = scrollableHeight > 0
+        ? Math.min(1, Math.max(0, page.scrollTop / scrollableHeight))
+        : 0;
+
+      liquid.style.height = `${(1 - progress) * 100}%`;
+      updatePending = false;
+    }
+
+    function scheduleUpdate() {
+      if (!updatePending) {
+        updatePending = true;
+        requestAnimationFrame(updateDrink);
+      }
+    }
+
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("load", scheduleUpdate);
+
+    new ResizeObserver(scheduleUpdate).observe(document.body);
+
+    updateDrink();
+  })();
+</script>
 </body>
 </html>

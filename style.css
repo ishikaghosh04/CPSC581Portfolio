@@ -329,7 +329,7 @@ h1 span {
 
 .constellation-stars {
   fill: #84a282;
-  filter: drop-shadow(0 0 5px rgb(132 162 130 / 70%));
+  filter: drop-shadow(0 0 5px rgba(211, 203, 156, 0.7));
 }
 
 .project:hover .constellation-lines,
@@ -673,5 +673,92 @@ h1 span {
 @media (prefers-reduced-motion: reduce) {
   :root {
     scroll-behavior: auto;
+  }
+}
+/* Strawberry matcha scroll indicator */
+.matcha-scroll {
+  position: fixed;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 150px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.matcha-glass {
+  position: absolute;
+  inset: 18px 0 0;
+  overflow: hidden;
+  border: 2px solid #687e60;
+  border-top: 3px solid #687e60;
+  border-radius: 5px 5px 12px 12px;
+  background: rgba(255, 250, 245, 0.55);
+  box-shadow: 0 3px 12px rgba(75, 96, 65, 0.12);
+}
+
+.matcha-liquid {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    #db8fa3 0%,
+    #efb6c5 35%,
+    #f7e4d5 48%,
+    #bdd19e 60%,
+    #84a282 100%
+  );
+  border-radius: 3px 3px 0 0;
+  transition: height 100ms linear;
+}
+
+.matcha-straw {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 5px;
+  height: 62px;
+  border: 1px solid #b87586;
+  border-radius: 3px;
+  background: repeating-linear-gradient(
+    135deg,
+    #fff4ed 0 6px,
+    #dfa1b2 6px 12px
+  );
+  transform: rotate(10deg);
+  transform-origin: bottom center;
+}
+
+.matcha-shine {
+  position: absolute;
+  top: 8px;
+  bottom: 10px;
+  left: 5px;
+  width: 3px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 600px) {
+  .matcha-scroll {
+    right: 6px;
+    width: 22px;
+    height: 105px;
+  }
+
+  .matcha-straw {
+    left: 12px;
+    width: 4px;
+    height: 46px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .matcha-liquid {
+    transition: none;
   }
 }
