@@ -80,13 +80,18 @@ a {
 
 .hero {
   display: grid;
-  min-height: min(760px, calc(100vh - 76px));
-  grid-template-columns: 1.05fr 0.95fr;
+  min-height: min(690px, max(560px, calc(100vh - 76px)));
+  grid-template-columns: 1fr 0.92fr;
   align-items: center;
-  gap: 4%;
-  padding-top: 72px;
-  padding-bottom: 100px;
+  gap: clamp(2rem, 4vw, 4rem);
+  padding-top: 36px;
+  padding-bottom: 52px;
   background: var(--green);
+}
+
+.hero.section {
+  padding-right: clamp(7%, 9vw, 12%);
+  padding-left: clamp(7%, 9vw, 12%);
 }
 
 .eyebrow {
@@ -117,8 +122,8 @@ p {
 
 h1 {
   max-width: 680px;
-  margin-bottom: 1.45rem;
-  font-size: clamp(3.5rem, 7.1vw, 6.7rem);
+  margin-bottom: 1.1rem;
+  font-size: clamp(3rem, 5.1vw, 5.2rem);
   font-weight: 550;
   letter-spacing: -0.085em;
   line-height: 0.98;
@@ -136,7 +141,7 @@ h1 span {
 
 .hero-intro {
   max-width: 390px;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   color: #5f6258;
   font-size: 1rem;
   line-height: 1.7;
@@ -157,69 +162,191 @@ h1 span {
 }
 
 .hero-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.hero-copy {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.drink-builder {
+  width: 100%;
+  max-width: 460px;
+}
+
+.ingredient-menu {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.25rem, 1vw, 0.7rem);
+  margin: 0;
+  padding: 8px 4px;
+}
+
+.ingredient-button {
+  display: flex;
+  min-width: 0;
+  min-height: 104px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.4rem 0.25rem 0.55rem;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ingredient-button:hover,
+.ingredient-button[aria-pressed="true"] {
+  border-color: rgb(138 87 102 / 32%);
+  background: rgb(246 226 233 / 82%);
+}
+
+.ingredient-button:focus-visible {
+  outline: 2px solid #4d704c;
+  outline-offset: 2px;
+}
+
+.ingredient-icon {
+  display: grid;
+  width: 68px;
+  height: 68px;
+  flex: 0 0 68px;
+  place-items: center;
+  transition: transform 180ms ease;
+}
+
+.ingredient-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ingredient-button:hover .ingredient-icon,
+.ingredient-button:focus-visible .ingredient-icon,
+.ingredient-button[aria-pressed="true"] .ingredient-icon {
+  transform: scale(1.08);
+}
+
+.ingredient-label {
+  font-size: 0.68rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.ingredient-button.is-bouncing .ingredient-icon {
+  animation: ingredient-bounce 420ms ease-out;
+}
+
+.drink-canvas {
   position: relative;
   display: grid;
-  min-height: 410px;
+  width: 100%;
+  max-width: 440px;
+  height: clamp(285px, 27vw, 340px);
+  margin: 0 auto;
   place-items: center;
 }
 
-.art-sun {
+.cup-art {
   position: absolute;
-  top: 3%;
-  right: 8%;
-  width: 115px;
-  height: 115px;
-  border-radius: 50%;
-  background: var(--accent);
+  inset: 0;
+  display: grid;
+  place-items: center;
 }
 
-.art-card {
-  position: relative;
-  display: flex;
-  width: min(76%, 340px);
-  height: 350px;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 25px;
-  border: 1px solid rgb(32 35 30 / 25%);
-  background: var(--paper);
-  box-shadow: 20px 20px 0 rgb(246 226 233 / 65%);
-  transform: rotate(-4deg);
+.drink-image {
+  display: block;
+  width: auto;
+  height: clamp(285px, 27vw, 340px);
+  max-width: 100%;
+  aspect-ratio: 375 / 666;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 10px rgb(66 49 33 / 10%));
+  transform: translate(var(--cup-offset-x), var(--cup-offset-y)) scale(var(--cup-scale, 1));
+  transform-origin: center;
 }
 
-.art-label,
-.art-caption {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+.cup-art.is-changing {
+  animation: drink-change 620ms ease-out both;
 }
 
-.art-caption {
+.drink-label {
+  min-height: 1.5em;
+  margin: 0.2rem 0 0;
+  color: #4d704c;
   font-family: var(--serif);
-  font-size: 1.3rem;
-  font-weight: 400;
-  letter-spacing: 0;
-}
-
-.art-shape {
-  width: 182px;
-  height: 182px;
-  align-self: center;
-  border: 1px solid #2b3022;
-  border-radius: 50% 50% 4px 50%;
-  background: var(--pink);
-  transform: rotate(45deg);
-}
-
-.art-note {
-  position: absolute;
-  right: 0;
-  bottom: 8%;
-  color: var(--muted);
-  font-family: var(--serif);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-style: italic;
-  line-height: 1.5;
+  text-align: center;
+}
+
+.sparkle-burst {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.sparkle-star {
+  position: absolute;
+  color: #f5c84c;
+  font-size: 1.15rem;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgb(106 76 26 / 15%);
+  animation: sparkle-pop 640ms ease-out both;
+}
+
+@keyframes ingredient-bounce {
+  0%,
+  100% {
+    transform: scale(1.08);
+  }
+
+  42% {
+    transform: scale(1.17);
+  }
+}
+
+@keyframes drink-change {
+  from {
+    opacity: 0.62;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes sparkle-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.25) rotate(-20deg);
+  }
+
+  28% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--sparkle-x), var(--sparkle-y)) scale(0.4) rotate(80deg);
+  }
 }
 
 .section-index {
@@ -231,13 +358,60 @@ h1 span {
   letter-spacing: 0.1em;
 }
 
+.section-wave {
+  isolation: isolate;
+}
+
+.section-wave::before {
+  position: absolute;
+  z-index: 0;
+  top: -1px;
+  right: 0;
+  left: 0;
+  height: 44px;
+  background-image: var(--transition-wave);
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  content: "";
+  pointer-events: none;
+}
+
+.section-wave > :not(.section-index) {
+  position: relative;
+  z-index: 1;
+}
+
+.section-wave > .section-index {
+  z-index: 1;
+}
+
+.wave-green-sage {
+  --transition-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x2='0' y2='1'%3E%3Cstop stop-color='%2384a282'/%3E%3Cstop offset='1' stop-color='%23b8cfb3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M0 0H1440V22C1320 27 1270 17 1150 23S960 34 830 25 600 16 470 25 220 34 100 24 30 19 0 27Z'/%3E%3C/svg%3E");
+}
+
+.wave-sage-cream {
+  --transition-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x2='0' y2='1'%3E%3Cstop stop-color='%23b8cfb3'/%3E%3Cstop offset='1' stop-color='%23fefaf3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M0 0H1440V24C1310 31 1240 17 1130 22S940 36 810 26 620 15 490 24 240 36 120 25 35 20 0 29Z'/%3E%3C/svg%3E");
+}
+
+.wave-cream-sage {
+  --transition-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x2='0' y2='1'%3E%3Cstop stop-color='%23fefaf3'/%3E%3Cstop offset='1' stop-color='%23b8cfb3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M0 0H1440V21C1330 27 1260 18 1140 24S950 34 820 24 610 17 480 25 230 35 110 23 40 18 0 28Z'/%3E%3C/svg%3E");
+}
+
+.wave-sage-pink {
+  --transition-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x2='0' y2='1'%3E%3Cstop stop-color='%23b8cfb3'/%3E%3Cstop offset='1' stop-color='%23f6e2e9'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M0 0H1440V24C1300 30 1250 18 1120 24S940 36 800 25 600 16 470 23 220 36 110 25 35 20 0 30Z'/%3E%3C/svg%3E");
+}
+
+.wave-pink-green {
+  --transition-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x2='0' y2='1'%3E%3Cstop stop-color='%23f6e2e9'/%3E%3Cstop offset='1' stop-color='%2384a282'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M0 0H1440V22C1320 29 1260 18 1150 24S950 35 820 24 620 16 490 24 240 35 110 24 35 19 0 29Z'/%3E%3C/svg%3E");
+}
+
 .content-section {
   display: grid;
   grid-template-columns: 0.82fr 1.18fr;
   gap: 10%;
-  padding-top: 135px;
-  padding-bottom: 140px;
-  border-top: 1px solid var(--line);
+  padding-top: 100px;
+  padding-bottom: 110px;
 }
 
 .philosophy {
@@ -305,36 +479,13 @@ h1 span {
 }
 
 .project {
-  overflow: hidden;
+  padding-top: 95px;
+  padding-bottom: 112px;
   background: var(--paper);
 }
 
-.constellation {
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.constellation-lines {
-  fill: none;
-  stroke: var(--green);
-  stroke-width: 1.5;
-  opacity: 0;
-  filter: drop-shadow(0 0 5px rgb(132 162 130 / 75%));
-  transition: opacity 350ms ease;
-}
-
-.constellation-stars {
-  fill: #84a282;
-  filter: drop-shadow(0 0 5px rgba(211, 203, 156, 0.7));
-}
-
-.project:hover .constellation-lines,
-.project:focus-within .constellation-lines {
-  opacity: 0.55;
+.project-two {
+  background: var(--sage);
 }
 
 .project-content {
@@ -374,10 +525,20 @@ h1 span {
 .project-about,
 .project-info-card,
 .learning-card {
-  border: 1px solid rgb(32 35 30 / 13%);
-  border-radius: 4px;
-  background: rgb(184 207 179 / 60%);
+  border: 0;
+  border-radius: 22px;
+  background: rgb(184 207 179 / 48%);
+  box-shadow: 0 8px 24px rgb(55 69 48 / 6%);
   backdrop-filter: blur(3px);
+  transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.project-about:hover,
+.project-info-card:hover,
+.learning-card:hover {
+  background-color: rgb(184 207 179 / 58%);
+  box-shadow: 0 12px 28px rgb(55 69 48 / 9%);
+  transform: translateY(-2px);
 }
 
 .project-about {
@@ -413,7 +574,8 @@ h1 span {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border: 1px solid rgb(32 35 30 / 15%);
+  border: 0;
+  border-radius: 20px;
   background:
     linear-gradient(135deg, rgb(246 226 233 / 35%), transparent 55%),
     rgb(184 207 179 / 57%);
@@ -421,41 +583,32 @@ h1 span {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.04em;
+  box-shadow: 0 8px 24px rgb(55 69 48 / 7%);
 }
 
 .image-placeholder {
   aspect-ratio: 1 / 0.92;
-  flex-direction: column;
-  gap: 0.55rem;
+  background: #f6e2e9;
 }
 
-.placeholder-number {
-  color: #4d704c;
-  font-family: var(--serif);
-  font-size: 2.2rem;
-  font-weight: 400;
+.image-placeholder img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .video-placeholder {
-  min-height: 270px;
-  flex-direction: column;
-  gap: 0.85rem;
+  display: block;
   margin-top: 1rem;
-  background:
-    linear-gradient(145deg, rgb(246 226 233 / 44%), transparent 60%),
-    rgb(184 207 179 / 48%);
+  background: #20231e;
 }
 
-.video-play {
-  display: grid;
-  width: 58px;
-  height: 58px;
-  place-items: center;
-  padding-left: 4px;
-  border: 1px solid rgb(32 35 30 / 35%);
-  border-radius: 50%;
-  background: rgb(254 250 243 / 75%);
-  font-size: 1.1rem;
+.video-placeholder video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
 }
 
 .project-info-grid {
@@ -470,6 +623,18 @@ h1 span {
   padding: 1.5rem;
 }
 
+.project-two-gallery {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.project-media-placeholder {
+  padding: 1rem;
+  background:
+    linear-gradient(145deg, rgb(246 226 233 / 75%), rgb(254 250 243 / 72%));
+  color: #536650;
+  text-align: center;
+}
+
 .project-info-card h3,
 .learning-card h3 {
   margin: 0 0 0.8rem;
@@ -479,9 +644,23 @@ h1 span {
   line-height: 1.2;
 }
 
-.project-info-card > p:last-child,
+.project-info-card > p:not(.eyebrow),
 .learning-card > p:last-child {
   font-size: 0.85rem;
+  line-height: 1.75;
+}
+
+.project-info-card > p:not(.eyebrow) {
+  margin-bottom: 0.85rem;
+}
+
+.project-info-card > p:last-child {
+  margin-bottom: 0;
+}
+
+.project-info-card > p strong {
+  font: inherit;
+  font-weight: 700;
 }
 
 .project-links {
@@ -498,18 +677,20 @@ h1 span {
   justify-content: space-between;
   gap: 1.5rem;
   padding: 1rem 1.2rem;
-  border: 1px solid #4d704c;
-  border-radius: 3px;
-  background: #84a282;
+  border: 0;
+  border-radius: 999px;
+  background: #b8cfb3;
   color: #20231e;
   font-size: 0.8rem;
   font-weight: 700;
-  transition: background-color 180ms ease, transform 180ms ease;
+  box-shadow: 0 5px 16px rgb(55 69 48 / 8%);
+  transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .project-button:hover {
-  background: #b8cfb3;
-  transform: translateY(-2px);
+  background: #c9d9c4;
+  box-shadow: 0 8px 20px rgb(55 69 48 / 12%);
+  transform: translateY(-1px);
 }
 
 .project-button:focus-visible,
@@ -530,7 +711,7 @@ h1 span {
 }
 
 .credits-body {
-  padding-top: 3.3rem;
+  padding-top: 1.5rem;
 }
 
 .credits-body .text-link {
@@ -538,12 +719,12 @@ h1 span {
 }
 
 .site-footer {
+  position: relative;
   display: flex;
-  min-height: 90px;
+  min-height: 104px;
   align-items: center;
   justify-content: space-between;
   padding: 0 7.2%;
-  border-top: 1px solid var(--line);
   background: var(--green);
 }
 
@@ -559,18 +740,20 @@ h1 span {
   }
 
   .site-header {
-    min-height: 92px;
+    min-height: unset;
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
-    gap: 0.6rem;
-    padding: 0 6%;
+    gap: 0.55rem;
+    padding: 0.8rem 6%;
   }
 
   .site-nav {
+    display: grid;
     width: 100%;
-    justify-content: space-between;
-    gap: 0.8rem;
+    grid-template-columns: repeat(3, max-content);
+    justify-content: start;
+    gap: 0.5rem 1.1rem;
   }
 
   .site-nav a {
@@ -585,24 +768,58 @@ h1 span {
   .hero {
     min-height: unset;
     grid-template-columns: 1fr;
-    gap: 1rem;
-    padding-top: 82px;
-    padding-bottom: 95px;
+    gap: 1.5rem;
+    padding-top: 42px;
+    padding-bottom: 88px;
   }
 
-  h1 {
-    font-size: clamp(3.5rem, 13vw, 5.8rem);
+  .hero.section {
+    padding-right: 7%;
+    padding-left: 7%;
+  }
+
+  .hero-copy {
+    grid-column: 1;
+    grid-row: 1;
   }
 
   .hero-art {
-    min-height: 370px;
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 0;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 11vw, 4.4rem);
+  }
+
+  .drink-builder {
+    max-width: 460px;
+  }
+
+  .drink-canvas {
+    height: clamp(280px, 76vw, 320px);
+  }
+
+  .drink-image {
+    height: clamp(280px, 76vw, 320px);
+  }
+
+  .ingredient-icon {
+    width: 60px;
+    height: 60px;
+    flex-basis: 60px;
+  }
+
+  .ingredient-button {
+    min-height: 102px;
   }
 
   .content-section {
     grid-template-columns: 1fr;
     gap: 1rem;
-    padding-top: 90px;
-    padding-bottom: 100px;
+    padding-top: 78px;
+    padding-bottom: 84px;
   }
 
   .section-body {
@@ -621,12 +838,17 @@ h1 span {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .video-placeholder {
-    min-height: 220px;
-  }
-
   .project-info-grid {
     grid-template-columns: 1fr;
+  }
+
+  .project {
+    padding-top: 78px;
+    padding-bottom: 88px;
+  }
+
+  .section-wave::before {
+    height: 34px;
   }
 
   .project-links {
@@ -648,12 +870,8 @@ h1 span {
 }
 
 @media (max-width: 420px) {
-  .site-nav {
-    gap: 0.35rem;
-  }
-
   .site-nav a {
-    font-size: 0.61rem;
+    font-size: 0.65rem;
   }
 
   .principles {
@@ -670,9 +888,59 @@ h1 span {
   }
 }
 
+@media (min-width: 761px) and (max-width: 900px) {
+  .site-nav {
+    gap: 0.8rem;
+  }
+
+  .site-nav a {
+    font-size: 0.68rem;
+  }
+
+  .hero {
+    min-height: unset;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding-top: 48px;
+    padding-bottom: 92px;
+  }
+
+  .hero-copy {
+    grid-column: 1;
+    grid-row: 1;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .hero-art {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .drink-builder {
+    max-width: 440px;
+  }
+
+  .drink-canvas,
+  .drink-image {
+    height: clamp(300px, 40vw, 340px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   :root {
     scroll-behavior: auto;
+  }
+
+  .ingredient-icon,
+  .drink-image {
+    transition: none;
+  }
+
+  .ingredient-button.is-bouncing .ingredient-icon,
+  .cup-art.is-changing,
+  .sparkle-star {
+    animation: none;
   }
 }
 /* Strawberry matcha scroll indicator */
@@ -705,7 +973,7 @@ h1 span {
   width: 100%;
   height: 100%;
   background: linear-gradient(
-    to top,
+    to bottom,
     #db8fa3 0%,
     #efb6c5 35%,
     #f7e4d5 48%,
