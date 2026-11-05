@@ -3,79 +3,82 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#84a282">
-  <meta name="description" content="Choose a tea, add boba, and build a watercolor drink at Ishika’s Boba Tea Store.">
+  <meta name="theme-color" content="#523c34">
+  <meta name="description" content="Explore Ishika’s CPSC 581 design portfolio, set in a pixel-art boba tea storefront.">
   <title>Ishika’s Boba Tea Store | CPSC 581 Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Strawberry matcha scroll indicator --> <!--AI generated -->
-<div class="matcha-scroll" aria-hidden="true">
-  <div class="matcha-straw"></div>
-  <div class="matcha-glass">
-    <div class="matcha-liquid" id="matcha-liquid"></div>
-    <div class="matcha-shine"></div>
-  </div>
-</div>
-  <header class="site-header">
-    <a class="wordmark" href="#home" aria-label="Portfolio home"></a>
-    <nav class="site-nav" aria-label="Main navigation">
-      <a href="#home">Home</a>
-      <a href="#philosophy">Design philosophy</a>
-      <a href="#project-one">Project 1</a>
-      <a href="#project-two">Project 2</a>
-      <a href="#credits">Credits</a>
-    </nav>
-  </header>
-
   <main>
-    <section class="hero section" id="home" aria-labelledby="home-title">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="status-dot"></span> Make your own Boba</p>
-        <h1 id="home-title">Ishika’s<br><span>Boba Tea Store</span></h1>
-        <p class="hero-intro">A little matcha, a little magic. Pick a tea, add boba, and make your cup just the way you like it.</p>
-        <a class="text-link" href="#project-one">Scroll Down <span aria-hidden="true">↓</span></a>
-      </div>
-      <div class="hero-art">
-        <div class="drink-builder" id="drink-builder">
-          <div class="ingredient-menu" role="group" aria-label="Choose your drink ingredients">
-            <button class="ingredient-button" type="button" data-ingredient="matcha" aria-pressed="false">
-              <span class="ingredient-icon"><img src="assets/drink-menu/Watercolor%20matcha%20bowl%20icon-1.png" alt=""></span>
-              <span class="ingredient-label">Matcha</span>
-            </button>
-            <button class="ingredient-button" type="button" data-ingredient="brownSugar" aria-pressed="false">
-              <span class="ingredient-icon"><img src="assets/drink-menu/Brown%20Sugar%20Milk%20Tea%20Icon-4.png" alt=""></span>
-              <span class="ingredient-label">Brown Sugar<br>Milk Tea</span>
-            </button>
-            <button class="ingredient-button" type="button" data-ingredient="blackTea" aria-pressed="false">
-              <span class="ingredient-icon"><img src="assets/drink-menu/Black%20tea%20tasting%20bowl-3.png" alt=""></span>
-              <span class="ingredient-label">Black Tea</span>
-            </button>
-            <button class="ingredient-button" type="button" data-ingredient="boba" aria-pressed="false">
-              <span class="ingredient-icon"><img src="assets/drink-menu/Glossy%20boba%20pearl%20mound-2.png" alt=""></span>
-              <span class="ingredient-label">Boba</span>
-            </button>
+    <section class="hero" id="home" data-scene="evening" aria-label="Ishika’s Boba Tea Store">
+      <div class="hero-inner">
+        <div class="storefront-stage">
+          <img
+            class="hero-scene"
+            src="assets/Ishika%20Store%20Front%20Img1.png"
+            alt="Pixel-art evening scene of Ishika’s Boba Tea Store, with the shop sign and characters outside."
+          >
+          <div class="scene-switcher" role="group" aria-label="Choose storefront scene">
+            <button class="scene-button" type="button" data-scene="morning" aria-pressed="false">Morning</button>
+            <button class="scene-button" type="button" data-scene="evening" aria-pressed="true">Evening</button>
           </div>
-          <div class="drink-canvas" aria-live="polite" aria-atomic="true">
-            <div class="sparkle-burst" aria-hidden="true"></div>
-            <div class="cup-art" id="cup-art">
-              <img
-                class="drink-image"
-                id="drink-image"
-                alt="Empty watercolor cup with a brown straw"
-              >
+          <button class="ishika-help-trigger" type="button" aria-expanded="false" aria-controls="ishika-help">
+            <span>Ask Ishika</span>
+          </button>
+          <div class="leaf-layer" aria-hidden="true"></div>
+        </div>
+        <aside class="ishika-help" id="ishika-help" role="dialog" aria-labelledby="ishika-help-title" hidden>
+          <img class="help-character" src="assets/Ishika/ishika.png" alt="">
+          <div class="speech-bubble">
+            <img class="speech-bubble-art" src="assets/Ishika/speech%20bubble.png" alt="" aria-hidden="true">
+            <div class="speech-bubble-content">
+              <div class="ishika-help-heading">
+                <h2 id="ishika-help-title">A little help?</h2>
+                <button class="ishika-help-close" type="button" aria-label="Close Ishika’s help">×</button>
+              </div>
+              <p>Hi, I’m Ishika! Pick a tea, add pearls if the recipe calls for them, then use the button under your cup to visit a section. Matcha takes you to Project 1, black tea with pearls takes you to Project 2, and brown sugar milk tea with pearls takes you to my Design Philosophy. You can also scroll down to explore everything.</p>
             </div>
           </div>
-          <p class="drink-label" id="drink-label">Your empty cup</p>
+        </aside>
+        <div class="drink-station">
+          <h1 class="drink-station-title">Boba Menu</h1>
+          <div class="drink-station-layout">
+            <div class="machine-wrap">
+              <img class="boba-machine" src="assets/drink-menu/boba%20tea%20machine.png" alt="Boba tea machine">
+            </div>
+            <div class="drink-options">
+              <div class="drink-preview" aria-live="polite">
+                <img class="drink-image" id="drink-image" src="assets/drink-menu/Empty_watercolor_cup_with_brown_straw-2-removebg-preview.png" alt="Empty cup">
+              </div>
+              <div class="ingredient-menu" role="group" aria-label="Choose a tea and optional pearls">
+                <button class="ingredient-button" type="button" data-ingredient="matcha" aria-pressed="false">
+                  <img src="assets/drink-menu/Watercolor%20matcha%20bowl%20icon-1.png" alt="">
+                  <span>Matcha</span>
+                </button>
+                <button class="ingredient-button" type="button" data-ingredient="blackTea" aria-pressed="false">
+                  <img src="assets/drink-menu/Black%20tea%20tasting%20bowl-3.png" alt="">
+                  <span>Black Tea</span>
+                </button>
+                <button class="ingredient-button" type="button" data-ingredient="brownSugar" aria-pressed="false">
+                  <img src="assets/drink-menu/Brown%20Sugar%20Milk%20Tea%20Icon-4.png" alt="">
+                  <span>Brown Sugar Milk Tea</span>
+                </button>
+                <button class="ingredient-button" type="button" data-ingredient="boba" aria-pressed="false">
+                  <img src="assets/drink-menu/Glossy%20boba%20pearl%20mound-2.png" alt="">
+                  <span>Boba Pearls</span>
+                </button>
+                <button class="recipe-link" id="recipe-link" type="button" hidden></button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <span class="section-index">01 — 05</span>
     </section>
 
     <section class="content-section philosophy section section-wave wave-green-sage" id="philosophy" aria-labelledby="philosophy-title">
       <div class="section-heading">
         <p class="eyebrow">02 / How I think</p>
-        <h2 id="philosophy-title">a<br>of <em>b</em></h2>
+        <h2 id="philosophy-title" tabindex="-1">Design<br><em>Philosophy</em></h2>
       </div>
       <div class="section-body">
         <p class="lead">a</p>
@@ -93,7 +96,7 @@
       <div class="project-content">
         <div class="project-heading">
           <p class="eyebrow">03 / Project Work</p>
-          <h2 id="project-title">Project 1:<br><em>Family of Buttons</em></h2>
+          <h2 id="project-title" tabindex="-1">Project 1:<br><em>Family of Buttons</em></h2>
           <p class="project-subtitle">Made by Linden, Utaha, Yasmin and Ishika.</p>
         </div>
 
@@ -160,7 +163,7 @@
       <div class="project-content">
         <div class="project-heading">
           <p class="eyebrow">04 / Project Work</p>
-          <h2 id="project-two-title">Project 2:<br><em>[Add project title]</em></h2>
+          <h2 id="project-two-title" tabindex="-1">Project 2:<br><em>[Add project title]</em></h2>
           <p class="project-subtitle">[Add a project subtitle or collaborator credits.]</p>
         </div>
 
@@ -207,11 +210,6 @@
     </section>
   </main>
 
-  <footer class="site-footer section-wave wave-pink-green">
-    <a class="wordmark" href="#home">581<span>.</span></a>
-    <p>CPSC 581 · Design portfolio</p>
-    <a href="#home">Back to top ↑</a>
-  </footer>
   <script src="script.js" defer></script>
 </body>
 </html>
