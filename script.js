@@ -186,3 +186,57 @@
   new ResizeObserver(scheduleScrollUpdate).observe(document.body);
   updateScrollIndicator();
 })();
+(() => {
+  const leafImages = [
+    "assets/leaves/leaf-moss.png",
+    "assets/leaves/leaf-olive.png",
+    "assets/leaves/leaf-sage.png",
+    "assets/leaves/leaf-amber.png",
+  ];
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const random = (min, max) => min + Math.random() * (max - min);
+
+  let lastSpawn = -Infinity;
+  let lastX = -Infinity;
+  let lastY = -Infinity;
+
+  window.addEventListener("pointermove", (event) => {
+    if (event.pointerType !== "mouse" || reducedMotion.matches) return;
+
+    const { clientX: x, clientY: y, timeStamp } = event;
+    if (timeStamp - lastSpawn < 160) return;
+    if (Math.hypot(x - lastX, y - lastY) < 20) return;
+
+    lastSpawn = timeStamp;
+    lastX = x;
+    lastY = y;
+
+    const leaf = document.createElement("img");
+    leaf.className = "cursor-leaf";
+    leaf.src = leafImages[Math.floor(Math.random() * leafImages.length)];
+    leaf.alt = "";
+    leaf.draggable = false;
+    leaf.style.left = `${x}px`;
+    leaf.style.top = `${y}px`;
+    leaf.style.width = `${random(14, 25)}px`;
+    document.body.append(leaf);
+
+    const drift = random(50, 110) * (Math.random() < 0.5 ? -1 : 1);
+    const fall = random(140, 230);
+    const tilt = random(-45, 45);
+
+    const flight = leaf.animate(
+      [
+        { transform: `translate(0, 0) rotate(${tilt}deg)`, opacity: 0 },
+        { transform: `translate(${drift * 0.3}px, ${fall * 0.15}px) rotate(${tilt + 45}deg)`, opacity: 0.9, offset: 0.2 },
+        { transform: `translate(${drift * 0.1}px, ${fall * 0.5}px) rotate(${tilt - 25}deg)`, opacity: 0.85, offset: 0.5 },
+        { transform: `translate(${drift * 0.8}px, ${fall * 0.8}px) rotate(${tilt + 95}deg)`, opacity: 0.6, offset: 0.8 },
+        { transform: `translate(${drift}px, ${fall}px) rotate(${tilt + 170}deg)`, opacity: 0 },
+      ],
+      { duration: random(2500, 3500), easing: "ease-in-out" }
+    );
+
+    flight.finished.then(() => leaf.remove(), () => leaf.remove());
+  }, { passive: true });
+})();

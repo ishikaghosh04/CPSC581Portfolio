@@ -13,7 +13,6 @@
   color: var(--ink);
   background: var(--green);
   scroll-behavior: smooth;
-  scroll-padding-top: 92px;
 }
 
 * {
@@ -735,9 +734,7 @@ h1 span {
 }
 
 @media (max-width: 760px) {
-  :root {
-    scroll-padding-top: 112px;
-  }
+  :root 
 
   .site-header {
     min-height: unset;
@@ -1028,5 +1025,18 @@ h1 span {
 @media (prefers-reduced-motion: reduce) {
   .matcha-liquid {
     transition: none;
+  }
+}
+.cursor-leaf {
+  position: fixed;
+  z-index: 10;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-leaf {
+    display: none;
   }
 }
