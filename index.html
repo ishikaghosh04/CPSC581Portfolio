@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- Set the page encoding, mobile viewport, browser theme color, and search description. -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#84a282">
   <meta name="description" content="Choose a tea, add boba, and build a watercolor drink at Ishika’s Boba Tea Store.">
   <title>Ishika’s Boba Tea Store | CPSC 581 Portfolio</title>
+  <!-- Load the shared stylesheet used to style every section of the portfolio. -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,12 +15,15 @@
 <div class="matcha-scroll" aria-hidden="true">
   <div class="matcha-straw"></div>
   <div class="matcha-glass">
+    <!-- JavaScript changes this liquid's height to show page scroll progress. -->
     <div class="matcha-liquid" id="matcha-liquid"></div>
     <div class="matcha-shine"></div>
   </div>
 </div>
 
+  <!-- The main content is divided into the interactive store and portfolio sections. -->
   <main>
+    <!-- Hero introduction and drink builder; JavaScript uses these IDs to update the cup. -->
     <section class="hero section" id="home" aria-labelledby="home-title">
       <div class="hero-copy">
         <p class="eyebrow"><span class="status-dot"></span> Make your own Boba</p>
@@ -27,41 +32,74 @@
         <a class="text-link" href="#project-one">Scroll Down <span aria-hidden="true">↓</span></a>
       </div>
       <div class="hero-art">
-        <div class="drink-builder" id="drink-builder">
-          <div class="ingredient-menu" role="group" aria-label="Choose your drink ingredients">
-            <button class="ingredient-button" type="button" data-ingredient="matcha" aria-pressed="false">
-              <span class="ingredient-icon"><img src="assets/drink-menu/Watercolor%20matcha%20bowl%20icon-1.png" alt=""></span>
-              <span class="ingredient-label">Matcha</span>
-            </button>
-            <button class="ingredient-button" type="button" data-ingredient="brownSugar" aria-pressed="false">
-              <span class="ingredient-icon"><img src="assets/drink-menu/Brown%20Sugar%20Milk%20Tea%20Icon-4.png" alt=""></span>
-              <span class="ingredient-label">Brown Sugar<br>Milk Tea</span>
-            </button>
-            <button class="ingredient-button" type="button" data-ingredient="blackTea" aria-pressed="false">
-              <span class="ingredient-icon"><img src="assets/drink-menu/Black%20tea%20tasting%20bowl-3.png" alt=""></span>
-              <span class="ingredient-label">Black Tea</span>
-            </button>
-            <button class="ingredient-button" type="button" data-ingredient="boba" aria-pressed="false">
-              <span class="ingredient-icon"><img src="assets/drink-menu/Glossy%20boba%20pearl%20mound-2.png" alt=""></span>
-              <span class="ingredient-label">Boba</span>
-            </button>
-          </div>
-          <div class="drink-canvas" aria-live="polite" aria-atomic="true">
-            <div class="sparkle-burst" aria-hidden="true"></div>
-            <div class="cup-art" id="cup-art">
-              <img
-                class="drink-image"
-                id="drink-image"
-                alt="Empty watercolor cup with a brown straw"
-              >
-            </div>
-          </div>
-          <p class="drink-label" id="drink-label">Your empty cup</p>
-        </div>
+<!-- The chalkboard image is the background for the tea choices, boba toggle, and cup preview. -->
+<div class="drink-builder chalkboard-builder" id="drink-builder">
+  <img class="chalkboard-back" src="assets/drink-menu/black-board.png" alt="">
+
+  <!-- script.js reads data-ingredient and updates aria-pressed to expose each tea's selected state. -->
+  <div class="chalkboard-teas" role="group" aria-label="Choose your tea">
+    <button class="ingredient-button" type="button" data-ingredient="brownSugar" aria-pressed="false">
+      <span class="ingredient-icon">
+        <img src="assets/drink-menu/Brown%20Sugar%20Milk%20Tea%20Icon-4.png" alt="">
+      </span>
+      <span class="ingredient-label">Brown Sugar<br>Milk Tea</span>
+    </button>
+
+    <button class="ingredient-button" type="button" data-ingredient="blackTea" aria-pressed="false">
+      <span class="ingredient-icon">
+        <img src="assets/drink-menu/Black%20tea%20tasting%20bowl-3.png" alt="">
+      </span>
+      <span class="ingredient-label">Black Tea</span>
+    </button>
+
+    <button class="ingredient-button" type="button" data-ingredient="matcha" aria-pressed="false">
+      <span class="ingredient-icon">
+        <img src="assets/drink-menu/Watercolor%20matcha%20bowl%20icon-1.png" alt="">
+      </span>
+      <span class="ingredient-label">Matcha</span>
+    </button>
+  </div>
+
+  <!-- This separate button toggles boba without changing the selected tea. -->
+  <div class="chalkboard-boba">
+    <button class="ingredient-button" type="button" data-ingredient="boba" aria-pressed="false">
+      <span class="ingredient-icon">
+        <img src="assets/drink-menu/Glossy%20boba%20pearl%20mound-2.png" alt="">
+      </span>
+      <span class="ingredient-label">Boba</span>
+    </button>
+  </div>
+
+  <!-- The live region announces the changing drink; the IDs below are updated by script.js. -->
+  <div class="chalkboard-cup">
+    <div class="drink-canvas" aria-live="polite" aria-atomic="true">
+      <div class="sparkle-burst" aria-hidden="true"></div>
+      <div class="cup-art" id="cup-art">
+        <img class="drink-image" id="drink-image" alt="Empty watercolor cup with a brown straw">
       </div>
-      <span class="section-index">01 — 05</span>
+    </div>
+  </div>
+
+  <!-- JavaScript updates this text to describe the current cup image. -->
+  <p class="drink-label" id="drink-label">Your empty cup</p>
+</div>
+        <a class="project-button recipe-link" id="recipe-link" hidden>
+          <span class="recipe-link-label"></span><span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <details class="ishika-character">
+  <summary class="ishika-trigger" aria-label="Ishika’s shop rules">
+    <img src="assets/Ishika/ishika-char.png" alt="">
+  </summary>
+
+  <div class="ishika-bubble">
+    <p>(text)</p>
+  </div>
+</details>
+      <span class="section-index">01 — 06</span>
     </section>
 
+    <!-- This section presents the portfolio owner's design philosophy and principles. -->
     <section class="content-section philosophy section section-wave wave-green-sage" id="philosophy" aria-labelledby="philosophy-title">
       <div class="section-heading">
         <p class="eyebrow">02 / How I think</p>
@@ -76,9 +114,10 @@
           <div><span>03</span><strong>c</strong><p>c</p></div>
         </div>
       </div>
-      <span class="section-index">02 — 05</span>
+      <span class="section-index">02 — 06</span>
     </section>
 
+    <!-- Project 1 combines an overview, gallery, video, process, tools, links, and reflection. -->
     <section class="project section section-wave wave-sage-cream" id="project-one" aria-labelledby="project-title">
       <div class="project-content">
         <div class="project-heading">
@@ -143,49 +182,97 @@
           <p>Capture what worked, what changed along the way, and what you would carry into the next project.</p>
         </article>
       </div>
-      <span class="section-index">03 — 05</span>
+      <span class="section-index">03 — 06</span>
     </section>
 
+    <!-- Project 2 presents the Lighting Teacher concept, its demo, and the team's process. -->
     <section class="project section project-two section-wave wave-cream-sage" id="project-two" aria-labelledby="project-two-title">
       <div class="project-content">
         <div class="project-heading">
           <p class="eyebrow">04 / Project Work</p>
-          <h2 id="project-two-title">Project 2:<br><em>[Add project title]</em></h2>
-          <p class="project-subtitle">[Add a project subtitle or collaborator credits.]</p>
+          <h2 id="project-two-title">Project 2:<br><em>Lighting Teacher</em></h2>
+          <p class="project-subtitle">Made by Ishika Ghosh, Linden Jiang, Utaha Iwai, and Yasmin Semsar.</p>
         </div>
 
         <div class="project-about">
           <p class="eyebrow">Project overview</p>
-          <p>[Add a short overview of Project 2 here. Describe its purpose, audience, and the experience you created.]</p>
+          <p>Lighting Teacher is a two-person 3D learning tool. One person sets up a reference scene as the expert, and the other experiments with a spotlight to recreate it. I implemented two ways to adjust the light’s brightness. Learners can hold up one, two, or three fingers to select a brightness level, or use a voice command to make the same change. I also designed the interface layout so learners could easily find the controls and keep their attention on how the scene changed.</p>
         </div>
 
-        <div class="project-gallery project-two-gallery" aria-label="Project 2 media placeholders">
-          <div class="media-placeholder image-placeholder project-media-placeholder">Project 2 image placeholder</div>
-          <div class="media-placeholder image-placeholder project-media-placeholder">Project 2 process image placeholder</div>
-          <div class="media-placeholder image-placeholder project-media-placeholder">Project 2 prototype image placeholder</div>
+        <div class="project-gallery project-two-gallery" aria-label="Lighting Teacher screenshots">
+          <div class="media-placeholder image-placeholder project-media-placeholder">
+            <img src="assets/Project%202%20ss1.png" alt="A phone displaying the Spotlight Controller in front of the lighting scene on a laptop.">
+          </div>
+          <div class="media-placeholder image-placeholder project-media-placeholder">
+            <img src="assets/Project%202%20ss2.png" alt="The hand gesture controls showing a webcam preview of a raised hand and detected fingers for brightness control.">
+          </div>
+          <div class="media-placeholder image-placeholder project-media-placeholder">
+            <img src="assets/Project%202%20ss3.png" alt="The Lighting Teacher welcome screen with expert and novice session setup panels and a three-step workflow.">
+          </div>
+        </div>
+
+        <div class="project-two-video">
+          <p class="eyebrow project-two-demo-label">Demo</p>
+          <div class="media-placeholder video-placeholder">
+            <video controls preload="metadata" aria-label="Lighting Teacher demo video">
+              <source src="assets/DemoVideo.mp4" type="video/mp4">
+              Your browser does not support embedded video.
+            </video>
+          </div>
         </div>
 
         <div class="project-info-grid">
           <article class="project-info-card">
             <p class="eyebrow">01 / Process</p>
             <h3>Ideation Process</h3>
-            <p>[Describe the ideas, sketches, research, and decisions that shaped Project 2.]</p>
+            <p>I proposed teaching lighting because light and shadow are essential to animation and take practice to work with. I found it difficult to manipulate them in Blender, especially while trying to understand how each adjustment changed the scene. That gave me the idea for a focused learning tool where beginners could experiment with a single spotlight and see the effect immediately.</p>
           </article>
           <article class="project-info-card">
             <p class="eyebrow">02 / Tools</p>
-            <h3>Tools, Collaboration &amp; Assets</h3>
-            <p><strong>Tech stack:</strong> [Add the technologies and tools used.]</p>
-            <p><strong>Collaboration:</strong> [Add collaborators and how you worked together.]</p>
-            <p><strong>Assets:</strong> [Add asset sources or acknowledgements.]</p>
+            <h3>Interaction &amp; Interface Design</h3>
+            <p><strong>Hand and voice controls —</strong> I implemented finger-count gestures and voice commands for brightness. Both inputs use the same three brightness levels, so learners can choose how they want to interact.</p>
+            <p><strong>Interface layout —</strong> I arranged the workspace to make the scene easy to look at and the controls easy to locate. I wanted learners to spend their time experimenting with light instead of searching for the next control.</p>
+            <p><strong>Project tech stack:</strong> TypeScript, HTML, CSS, Vite, Three.js, Node.js, Express, and Socket.IO.</p>
           </article>
         </div>
+        <div class="project-links" aria-label="Project links">
+          <a class="project-button" href="https://github.com/ishikaghosh04/CPSC581-A2-Expertise-Sharing.git" target="_blank" rel="noopener noreferrer">
+            <span>View on GitHub</span><span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
-      <span class="section-index">04 — 05</span>
+      <span class="section-index">04 — 06</span>
     </section>
 
+    <section class="project project-three section section-wave wave-cream-sage" id="project-three" aria-labelledby="project-three-title">
+      <div class="project-content">
+        <div class="project-heading">
+          <p class="eyebrow">05 / Project Work</p>
+          <h2 id="project-three-title">Group Project 3</h2>
+        </div>
+
+        <div class="project-about">
+          <p class="eyebrow">Project overview</p>
+          <p>Project description coming soon.</p>
+        </div>
+
+        <div class="project-gallery project-two-gallery" aria-label="Group Project 3 image placeholders">
+          <div class="media-placeholder image-placeholder project-media-placeholder">Image coming soon</div>
+          <div class="media-placeholder image-placeholder project-media-placeholder">Image coming soon</div>
+          <div class="media-placeholder image-placeholder project-media-placeholder">Image coming soon</div>
+        </div>
+
+        <div class="project-links" aria-label="Project links">
+          <span class="project-button project-button-placeholder">GitHub link coming soon</span>
+        </div>
+      </div>
+      <span class="section-index">05 — 06</span>
+    </section>
+
+    <!-- The final content section holds credits and a link back to the hero. -->
     <section class="content-section credits section section-wave wave-sage-pink" id="credits" aria-labelledby="credits-title">
       <div class="section-heading">
-        <p class="eyebrow">05 / The details</p>
+        <p class="eyebrow">06 / The details</p>
         <h2 id="credits-title">a<br><em>b</em></h2>
       </div>
       <div class="section-body credits-body">
@@ -193,15 +280,17 @@
         <p>b.</p>
         <a class="text-link" href="#home">Back to the top <span aria-hidden="true">↑</span></a>
       </div>
-      <span class="section-index">05 — 05</span>
+      <span class="section-index">06 — 06</span>
     </section>
   </main>
 
+  <!-- The footer repeats the portfolio identity and provides another link to the top. -->
   <footer class="site-footer section-wave wave-pink-green">
     <a class="wordmark" href="#home">581<span>.</span></a>
     <p>CPSC 581 · Design portfolio</p>
     <a href="#home">Back to top ↑</a>
   </footer>
+  <!-- defer waits until the document is parsed before the interactive features initialize. -->
   <script src="script.js" defer></script>
 </body>
 </html>

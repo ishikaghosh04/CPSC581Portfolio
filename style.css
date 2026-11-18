@@ -1,3 +1,4 @@
+/* Shared colors, typography, and page-level defaults used across the portfolio. */
 :root {
   color-scheme: light;
   --paper: #fefaf3;
@@ -15,6 +16,7 @@
   scroll-behavior: smooth;
 }
 
+/* Use predictable sizing and remove browser spacing from the page shell and links. */
 * {
   box-sizing: border-box;
 }
@@ -29,6 +31,7 @@ a {
   text-decoration: none;
 }
 
+/* Keep the top navigation visible and lay out its brand and links in one row. */
 .site-header {
   position: sticky;
   z-index: 5;
@@ -71,6 +74,7 @@ a {
   opacity: 0.55;
 }
 
+/* Give the page sections a shared horizontal gutter and establish the hero grid. */
 .section {
   position: relative;
   padding-right: 12%;
@@ -93,6 +97,7 @@ a {
   padding-left: clamp(7%, 9vw, 12%);
 }
 
+/* Style small section labels, the hero status dot, and the main heading hierarchy. */
 .eyebrow {
   margin: 0 0 1.5rem;
   color: var(--muted);
@@ -112,6 +117,7 @@ a {
   vertical-align: 1px;
 }
 
+/* Share the portfolio's serif accent and keep the hero introduction readable. */
 h1,
 h2,
 h3,
@@ -160,8 +166,10 @@ h1 span {
   font-size: 1rem;
 }
 
+/* Center the drink artwork in its hero column and size the ingredient controls. */
 .hero-art {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   grid-column: 1;
@@ -187,6 +195,7 @@ h1 span {
   padding: 8px 4px;
 }
 
+/* Ingredient buttons show icons and labels, with visible hover, selected, and keyboard states. */
 .ingredient-button {
   display: flex;
   min-width: 0;
@@ -217,6 +226,7 @@ h1 span {
   outline-offset: 2px;
 }
 
+/* Scale the ingredient art on interaction and animate a short bounce after selection. */
 .ingredient-icon {
   display: grid;
   width: 68px;
@@ -249,6 +259,7 @@ h1 span {
   animation: ingredient-bounce 420ms ease-out;
 }
 
+/* The cup canvas layers the drink art and sparkles; its label names the current recipe. */
 .drink-canvas {
   position: relative;
   display: grid;
@@ -309,6 +320,7 @@ h1 span {
   animation: sparkle-pop 640ms ease-out both;
 }
 
+/* Keyframes provide the ingredient bounce, cup change, and sparkle effects. */
 @keyframes ingredient-bounce {
   0%,
   100% {
@@ -348,6 +360,7 @@ h1 span {
   }
 }
 
+/* Number each page section and draw decorative color waves between sections. */
 .section-index {
   position: absolute;
   right: 7.2%;
@@ -385,6 +398,7 @@ h1 span {
   z-index: 1;
 }
 
+/* Each wave variable blends the color of neighboring sections. */
 .wave-green-sage {
   --transition-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x2='0' y2='1'%3E%3Cstop stop-color='%2384a282'/%3E%3Cstop offset='1' stop-color='%23b8cfb3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M0 0H1440V22C1320 27 1270 17 1150 23S960 34 830 25 600 16 470 25 220 34 100 24 30 19 0 27Z'/%3E%3C/svg%3E");
 }
@@ -405,6 +419,7 @@ h1 span {
   --transition-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x2='0' y2='1'%3E%3Cstop stop-color='%23f6e2e9'/%3E%3Cstop offset='1' stop-color='%2384a282'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M0 0H1440V22C1320 29 1260 18 1150 24S950 35 820 24 620 16 490 24 240 35 110 24 35 19 0 29Z'/%3E%3C/svg%3E");
 }
 
+/* Arrange the philosophy text and its three design principles. */
 .content-section {
   display: grid;
   grid-template-columns: 0.82fr 1.18fr;
@@ -477,13 +492,15 @@ h1 span {
   line-height: 1.6;
 }
 
+/* Project sections contain headings, descriptions, media, cards, and outbound links. */
 .project {
   padding-top: 95px;
   padding-bottom: 112px;
   background: var(--paper);
 }
 
-.project-two {
+.project-two,
+.project-three {
   background: var(--sage);
 }
 
@@ -521,6 +538,7 @@ h1 span {
   line-height: 1.7;
 }
 
+/* Give project description cards a subtle lift on hover and style their content. */
 .project-about,
 .project-info-card,
 .learning-card {
@@ -560,6 +578,7 @@ h1 span {
   line-height: 1.75;
 }
 
+/* Lay out project images and video while keeping media within its rounded frame. */
 .project-gallery {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -610,6 +629,7 @@ h1 span {
   object-fit: contain;
 }
 
+/* Use paired columns for project details and style buttons and keyboard focus rings. */
 .project-info-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -686,10 +706,32 @@ h1 span {
   transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
+.recipe-link {
+  margin-top: 0.5rem;
+}
+
+#recipe-link[hidden] {
+  display: none;
+}
+
 .project-button:hover {
   background: #c9d9c4;
   box-shadow: 0 8px 20px rgb(55 69 48 / 12%);
   transform: translateY(-1px);
+}
+
+/* Leave room for the sticky-header height when native recipe links target a section. */
+#project-one,
+#project-two,
+#philosophy {
+  scroll-margin-top: 5rem;
+}
+
+.project-button-placeholder:hover {
+  background: #b8cfb3;
+  box-shadow: 0 5px 16px rgb(55 69 48 / 8%);
+  transform: none;
+  cursor: default;
 }
 
 .project-button:focus-visible,
@@ -699,6 +741,7 @@ h1 span {
   outline-offset: 4px;
 }
 
+/* The closing credits section and footer finish the page with return-to-top links. */
 .learning-card {
   padding: clamp(1.3rem, 3vw, 2rem);
   background: rgb(246 226 233 / 78%);
@@ -733,6 +776,7 @@ h1 span {
   font-size: 0.72rem;
 }
 
+/* At tablet and phone widths, stack the hero and project content into narrower columns. */
 @media (max-width: 760px) {
   :root 
 
@@ -866,6 +910,7 @@ h1 span {
   }
 }
 
+/* On very narrow screens, stack the principle cards and reduce footer text size. */
 @media (max-width: 420px) {
   .site-nav a {
     font-size: 0.65rem;
@@ -885,6 +930,7 @@ h1 span {
   }
 }
 
+/* Keep the hero readable on medium-width screens between the mobile and desktop layouts. */
 @media (min-width: 761px) and (max-width: 900px) {
   .site-nav {
     gap: 0.8rem;
@@ -924,6 +970,7 @@ h1 span {
   }
 }
 
+/* Respect reduced-motion settings by disabling smooth scrolling and decorative animations. */
 @media (prefers-reduced-motion: reduce) {
   :root {
     scroll-behavior: auto;
@@ -941,6 +988,7 @@ h1 span {
   }
 }
 /* Strawberry matcha scroll indicator */
+/* Pin the decorative drink to the viewport; JavaScript changes the liquid height with scroll. */
 .matcha-scroll {
   position: fixed;
   top: 50%;
@@ -1008,6 +1056,7 @@ h1 span {
   background: rgba(255, 255, 255, 0.65);
 }
 
+/* At smaller sizes, shrink the scroll indicator and its straw to keep it unobtrusive. */
 @media (max-width: 600px) {
   .matcha-scroll {
     right: 6px;
@@ -1027,6 +1076,7 @@ h1 span {
     transition: none;
   }
 }
+/* Leaves are fixed above the page content; JavaScript positions and removes them after animation. */
 .cursor-leaf {
   position: fixed;
   z-index: 10;
@@ -1039,4 +1089,400 @@ h1 span {
   .cursor-leaf {
     display: none;
   }
+}
+/* The chalkboard builder is a positioned canvas for the background, ingredient buttons, and cup. */
+.chalkboard-builder {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 540px);
+  aspect-ratio: 405 / 460;
+  margin-inline: auto;
+}
+
+.chalkboard-back {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 83%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* top, left, width, and height place and size the tea list; the same positioning anchors boba and cup. */
+.chalkboard-teas,
+.chalkboard-boba,
+.chalkboard-cup {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.chalkboard-teas {
+  top: 42%;
+  left: 14%;
+  z-index: 2;
+  width: 26%;
+  height: 66%;
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  place-items: center;
+}
+
+.chalkboard-boba {
+  top: 18%;
+  left: 87%;
+  z-index: 2;
+  width: 25%;
+  display: grid;
+  place-items: center;
+}
+
+.chalkboard-builder .ingredient-button {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.chalkboard-builder .ingredient-button img {
+  width: 82%;
+  height: auto;
+  max-height: clamp(44px, 12vw, 94px);
+  object-fit: contain;
+}
+
+/* The cup's top, left, and width set its board placement and size; image offsets align each drink. */
+.chalkboard-cup {
+  top: 47%;
+  left: 51%;
+  z-index: 1;
+  width: 57%;
+}
+
+.chalkboard-cup #cup-art {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 375 / 666;
+  margin: 0;
+}
+
+.chalkboard-cup #drink-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform:
+    translate(var(--cup-offset-x, 0%), var(--cup-offset-y, 0%))
+    scale(var(--cup-scale, 1));
+}
+
+/* Keep the label readable near the bottom of the blackboard. */
+.chalkboard-builder #drink-label {
+  position: absolute;
+  right: 18%;
+  bottom: 12%;
+  left: 18%;
+  z-index: 1;
+  margin: 0;
+  color: #fff3db;
+  text-align: center;
+}
+/* Remove the old builder spacing so its elements can align against the blackboard image. */
+.drink-builder.chalkboard-builder {
+  display: block;
+  min-height: 0;
+  padding: 0;
+}
+
+.chalkboard-cup .drink-canvas {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+/* Blackboard drink builder */
+/* Set the final board proportions and use its width to size its contents responsively. */
+#drink-builder.chalkboard-builder {
+  container-type: inline-size;
+  width: min(100%, 440px);
+  max-width: none;
+  aspect-ratio: 405 / 440;
+}
+
+/* Override earlier ingredient positions and size icons and labels relative to board width. */
+#drink-builder .chalkboard-back {
+  width: 83%;
+  top: 51%;
+}
+
+#drink-builder .chalkboard-teas {
+  top: 43%;
+  left: 14%;
+  width: 26%;
+  height: 75%;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+}
+
+#drink-builder .chalkboard-boba {
+  top: 18%;
+  left: 86%;
+  width: 23%;
+}
+
+#drink-builder .ingredient-button {
+  min-height: 0;
+  gap: 3px;
+  padding: 2px;
+}
+
+#drink-builder .ingredient-icon {
+  width: 20cqi;
+  height: 17cqi;
+  flex: 0 0 17cqi;
+}
+
+#drink-builder .ingredient-icon img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: contain;
+}
+
+#drink-builder .ingredient-label {
+  min-height: 2.2em;
+  font-size: clamp(10px, 2.7cqi, 12px);
+  line-height: 1.1;
+  text-align: center;
+}
+
+/* Place the cup centrally and keep its recipe label scaled to the board. */
+#drink-builder .chalkboard-cup {
+  top: 48%;
+  left: 51%;
+  width: 51%;
+}
+
+#drink-builder #drink-label {
+  bottom: 12%;
+  font-size: clamp(13px, 4cqi, 18px);
+  line-height: 1.15;
+}
+/* Storefront scene behind the interactive blackboard */
+/* The morning image is the base layer; the evening image fades in above it. */
+#home.hero {
+  background: #76647d url("assets/store-front/evening-image.png")
+    center bottom / cover no-repeat;
+}
+
+/* Match the reference composition on desktop, with the builder left and accessible copy right. */
+/* Match the reference composition on desktop */
+@media (min-width: 900px) {
+  #home.hero {
+    display: grid;
+    grid-template-columns: 52% 48%;
+    grid-template-rows: 1fr;
+    align-items: center;
+    gap: 0;
+    min-height: 0;
+    aspect-ratio: 988 / 543;
+    padding: 0;
+  }
+
+  #home .hero-art {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    min-width: 0;
+  }
+
+  #home #drink-builder.chalkboard-builder {
+    width: min(78%, 520px);
+    margin-inline: auto;
+  }
+
+  #home .hero-copy {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    justify-self: end;
+    padding: 0 1.25rem 1.25rem 0;
+  }
+
+  #home .hero-copy .eyebrow,
+  #home .hero-copy h1,
+  #home .hero-intro {
+    /* Keep the text accessible while the storefront art supplies the title. */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  #home .hero-copy .text-link {
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    background: #fff0cf;
+    color: #38271e;
+  }
+}
+/* Set the storefront's default morning scene and create a separate evening overlay. */
+#home.hero {
+  position: relative;
+  isolation: isolate;
+  background-image: url("assets/store-front/morning-image.png");
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#home.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url("assets/store-front/evening-image.png")
+    center bottom / cover no-repeat;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+/* Toggling this class raises the evening layer's opacity for a gradual crossfade. */
+#home.hero.is-evening::before {
+  opacity: 1;
+}
+
+/* Avoid a background fade when the visitor prefers reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  #home.hero::before {
+    transition: none;
+  }
+}
+/* Establish the hero as the positioning container for Ishika and her speech bubble. */
+#home.hero {
+  position: relative;
+}
+
+/* left, bottom, and height set Ishika's desktop position and size over the storefront. */
+
+/* The summary image is the clickable/focusable trigger; the native details open state adds a glow. */
+#home .ishika-character {
+  position: absolute;
+  left: 44%;
+  bottom: 6%;
+  height: 48%;
+  z-index: 4;
+}
+
+#home .ishika-trigger {
+  display: block;
+  height: 100%;
+  width: max-content;
+  padding: 0;
+  list-style: none;
+  cursor: pointer;
+}
+
+#home .ishika-trigger::-webkit-details-marker {
+  display: none;
+}
+
+#home .ishika-trigger img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  transition: filter 180ms ease;
+}
+
+#home .ishika-trigger:hover img,
+#home .ishika-trigger:focus-visible img,
+#home .ishika-character[open] .ishika-trigger img {
+  filter: drop-shadow(0 0 7px #ffe3a1)
+          drop-shadow(0 0 14px #ffb95f);
+}
+
+/* Place the speech bubble above the character and draw its pixel-style border and tail. */
+#home .ishika-bubble {
+  position: absolute;
+  left: 78%;
+  bottom: 96%;
+  width: clamp(145px, 20vw, 240px);
+  padding: 14px 16px;
+  background: #fae6bf;
+  color: #3d261d;
+  box-shadow:
+    -3px 0 #503324,
+     3px 0 #503324,
+     0 -3px #503324,
+     0 3px #503324;
+  font: 700 0.9rem / 1.45 "Courier New", monospace;
+}
+
+#home .ishika-bubble p {
+  margin: 0;
+}
+
+/* Stepped pixel tail pointing toward Ishika */
+#home .ishika-bubble::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 12px;
+  width: 20px;
+  height: 14px;
+  background: linear-gradient(#fae6bf 0 5px, #503324 5px);
+  clip-path: polygon(
+    0 0, 100% 0, 100% 30%, 75% 30%, 75% 60%,
+    50% 60%, 50% 100%, 0 100%
+  );
+}
+
+/* Move Ishika and her bubble to fit the smaller hero layout and point the tail back toward her. */
+@media (max-width: 899px) {
+  #home .ishika-character {
+    left: auto;
+    right: 6%;
+    height: min(24%, 140px);
+  }
+
+  #home .ishika-bubble {
+    left: auto;
+    right: 0;
+    bottom: calc(100% + 10px);
+  }
+
+  #home .ishika-bubble::after {
+    left: auto;
+    right: 12px;
+    transform: scaleX(-1);
+  }
+}
+
+/* Keep the Project 2 and 3 gallery cards equal in width and screenshot proportions. */
+#project-two .project-two-gallery,
+#project-three .project-two-gallery {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+#project-two .project-two-gallery .image-placeholder,
+#project-three .project-two-gallery .image-placeholder {
+  aspect-ratio: 16 / 9;
+  padding: 0;
+}
+
+#project-two .project-two-gallery .image-placeholder img,
+#project-three .project-two-gallery .image-placeholder img {
+  object-fit: contain;
+}
+
+#project-two .project-two-demo-label {
+  text-transform: none;
 }
