@@ -432,6 +432,46 @@ h1 span {
   background: var(--sage);
 }
 
+#philosophy {
+  height: auto;
+  min-height: 0;
+  background-image: url("assets/store-front/Sunlit Boba Shop with Two Cats.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#philosophy .section-heading,
+#philosophy .section-body {
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+}
+
+#philosophy .section-body {
+  padding-top: 1.5rem;
+}
+
+#philosophy .section-body p {
+  color: #3f433d;
+}
+
+#philosophy .section-body .lead {
+  color: var(--ink);
+}
+
+#philosophy .section-index {
+  padding: 6px 9px;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+}
+
+#philosophy + #project-one.section-wave::before {
+  display: none;
+}
+
 .section-heading h2 {
   margin: 0;
   font-size: clamp(2.7rem, 5vw, 4.4rem);
@@ -861,6 +901,10 @@ h1 span {
     gap: 1rem;
     padding-top: 78px;
     padding-bottom: 84px;
+  }
+
+  #philosophy .principles {
+    grid-template-columns: 1fr;
   }
 
   .section-body {
@@ -1412,10 +1456,11 @@ h1 span {
 /* Place the speech bubble above the character and draw its pixel-style border and tail. */
 #home .ishika-bubble {
   position: absolute;
-  left: 78%;
-  bottom: 96%;
-  width: clamp(145px, 20vw, 240px);
-  padding: 14px 16px;
+  left: calc(100% + 12px);
+  bottom: 76%;
+  width: clamp(280px, 30vw, 370px);
+  box-sizing: border-box;
+  padding: 12px;
   background: #fae6bf;
   color: #3d261d;
   box-shadow:
@@ -1423,11 +1468,35 @@ h1 span {
      3px 0 #503324,
      0 -3px #503324,
      0 3px #503324;
-  font: 700 0.9rem / 1.45 "Courier New", monospace;
+  font: 400 14px / 1.35 "Courier New", monospace;
 }
 
 #home .ishika-bubble p {
   margin: 0;
+}
+
+#home .ishika-bubble-title {
+  margin-bottom: 5px;
+}
+
+#home .ishika-recipes {
+  display: grid;
+  gap: 3px;
+  margin-bottom: 5px;
+}
+
+#home .ishika-recipe-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 8px;
+}
+
+#home .ishika-recipe-row span {
+  min-width: 0;
+}
+
+#home .ishika-recipe-row span:last-child {
+  text-align: right;
 }
 
 /* Stepped pixel tail pointing toward Ishika */
@@ -1457,6 +1526,7 @@ h1 span {
     left: auto;
     right: 0;
     bottom: calc(100% + 10px);
+    width: min(370px, calc(100vw - 24px));
   }
 
   #home .ishika-bubble::after {
